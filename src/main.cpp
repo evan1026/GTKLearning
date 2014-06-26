@@ -17,23 +17,6 @@ Gtk::ProgressBar* pb2;
 
 Glib::RefPtr<Gtk::StatusIcon> icon;
 
-void on_adjustment1_value_changed(){
-    pb1->set_fraction(ad1->get_value() / 100);
-}
-
-void on_adjustment2_value_changed(){
-    pb2->set_fraction(1 - ad2->get_value() / 100);
-}
-
-void icon_thread(){
-    while (true){
-        delay(500);
-        icon->set_from_file("../icon/export/icon2.png"); //I wanted to do caching, but couldn't get it figured out.
-        delay(500);
-        icon->set_from_file("../icon/export/icon1.png"); //But this doesn't actually cause a performance drop.
-    }
-}
-
 int main(int argc, char* argv[]){
     Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "org.gtkmm.examples.base");
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create_from_file("../Unsaved 1.glade");
@@ -56,4 +39,21 @@ int main(int argc, char* argv[]){
     MarkUnused(iconThread); //Suppresses "Unused variable" warnings
 
     return app->run(*window);
+}
+
+void on_adjustment1_value_changed(){
+    pb1->set_fraction(ad1->get_value() / 100);
+}
+
+void on_adjustment2_value_changed(){
+    pb2->set_fraction(1 - ad2->get_value() / 100);
+}
+
+void icon_thread(){
+    while (true){
+        delay(500);
+        icon->set_from_file("../icon/export/icon2.png"); //I wanted to do caching, but couldn't get it figured out.
+        delay(500);
+        icon->set_from_file("../icon/export/icon1.png"); //But this doesn't actually cause a performance drop.
+    }
 }
