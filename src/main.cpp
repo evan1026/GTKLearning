@@ -36,7 +36,7 @@ void icon_thread(){
 
 int main(int argc, char* argv[]){
     Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "org.gtkmm.examples.base");
-    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create_from_file("Unsaved 1.glade");
+    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create_from_file("../Unsaved 1.glade");
 
     Gtk::Window* window;
     builder->get_widget("window1", window);
