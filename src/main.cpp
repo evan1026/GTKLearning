@@ -30,13 +30,13 @@ int main(int argc, char* argv[]){
     ad1->signal_value_changed().connect(sigc::ptr_fun(on_adjustment1_value_changed));
     ad2->signal_value_changed().connect(sigc::ptr_fun(on_adjustment2_value_changed));
 
-    builder->get_widget("progressbar1", pb1);
-    builder->get_widget("progressbar2", pb2);
+      builder->get_widget("progressbar1", pb1);
+      builder->get_widget("progressbar2", pb2);
 
-    icon = Glib::RefPtr<Gtk::StatusIcon>::cast_dynamic(builder->get_object("statusicon1"));
+       icon = Glib::RefPtr<Gtk::StatusIcon>::cast_dynamic(builder->get_object("statusicon1"));
 
-    Glib::Threads::Thread* iconThread = Glib::Threads::Thread::create(sigc::ptr_fun(icon_thread));
-    MarkUnused(iconThread); //Suppresses "Unused variable" warnings
+      Glib::Threads::Thread* iconThread = Glib::Threads::Thread::create(sigc::ptr_fun(icon_thread));
+      MarkUnused(iconThread); //Suppresses "Unused variable" warnings
 
     return app->run(*window);
 }
@@ -50,10 +50,10 @@ void on_adjustment2_value_changed(){
 }
 
 void icon_thread(){
-    while (true){
-        delay(500);
-        icon->set_from_file("../icon/export/icon2.png"); //I wanted to do caching, but couldn't get it figured out.
-        delay(500);
-        icon->set_from_file("../icon/export/icon1.png"); //But this doesn't actually cause a performance drop.
+       while (true){
+          delay(500);
+          icon->set_from_file("../icon/export/icon2.png"); //I wanted to do caching, but couldn't get it figured out.
+          delay(500);
+          icon->set_from_file("../icon/export/icon1.png"); //But this doesn't actually cause a performance drop.
     }
 }
